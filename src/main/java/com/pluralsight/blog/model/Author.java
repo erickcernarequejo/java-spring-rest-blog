@@ -16,6 +16,10 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //To ensure that the API client(s) aren’t using stale data, we can add a version to the Post and Author entities. Then every time a record gets updated, hibernate will automatically increment the version counter with 1. And the clients only need to update if the version has changed
+    @Version private Long version;
+
     private String firstname;
     private String lastname;
     @JsonIgnore
